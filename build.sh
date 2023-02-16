@@ -72,7 +72,7 @@ publish()
     export BUILD_NUMBER=1
   fi
 
-  cmake --build ${build_dir} publish
+  cmake --build ${build_dir} -- publish
 }
 
 clean()

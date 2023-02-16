@@ -14,10 +14,10 @@ add_executable(hello
 )
 
 install(TARGETS hello
-	EXPORT hello.exe
+	EXPORT ${OUTPUT_NAME}}
 )
 
-add_test(NAME test_hello COMMAND hello.exe)
+add_test(NAME test_hello COMMAND $<TARGET_FILE_NAME:hello>)
 
 add_custom_target(package
    COMMAND ${CMAKE_COMMAND} -E tar "cfv" "${CMAKE_CURRENT_BINARY_DIR}/hello-0.0.1.zip" --format=zip "hello-0.0.1"

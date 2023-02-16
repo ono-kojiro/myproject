@@ -1,40 +1,82 @@
 pipeline {
-    agent { label 'windows' }
+    agent any
 
     stages {
         stage('configure'){
             steps {
-                bat  'call build.bat configure'
+                script {
+                    if(isUnix()) {
+                        sh   'sh   build.sh  configure'
+                    } else {
+                        bat  'call build.bat configure'
+                    }
+                }
             }
         }
         stage('build'){
             steps {
-                bat  'call build.bat build'
+                script {
+                    if(isUnix()) {
+                        sh   'sh   build.sh  build'
+                    } else {
+                        bat  'call build.bat build'
+                    }
+                }
             }
         }
         stage('test'){
             steps {
-                bat  'call build.bat build'
+                script {
+                    if(isUnix()) {
+                        sh   'sh   build.sh test'
+                    } else {
+                        bat  'call build.bat test'
+                    }
+                }
             }
         }
         stage('install'){
             steps {
-                bat  'call build.bat install'
+                script {
+                    if(isUnix()) {
+                        sh   'sh   build.sh install'
+                    } else {
+                        bat  'call build.bat install'
+                    }
+                }
             }
         }
         stage('package'){
             steps {
-                bat  'call build.bat package'
+                script {
+                    if(isUnix()) {
+                        sh   'sh   build.sh package'
+                    } else {
+                        bat  'call build.bat package'
+                    }
+                }
             }
         }
         stage('upload'){
             steps {
-                bat  'call build.bat upload'
+                script {
+                    if(isUnix()) {
+                        sh   'sh   build.sh upload'
+                    } else {
+                        bat  'call build.bat upload'
+                    }
+                }
             }
         }
         stage('publish'){
             steps {
-                bat  'call build.bat publish'
+                script {
+                    if(isUnix()) {
+                        sh   'sh   build.sh  publish'
+                    } else {
+                        bat  'call build.bat publish'
+                    }
+                }
             }
         }
     }
