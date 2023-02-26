@@ -13,6 +13,23 @@ build_dir="_build"
 usage()
 {
   echo "usage : $0 target1 target2 ..."
+cat - << EOS
+
+  target:
+     config/configure       run cmake
+     build
+     test
+     install
+     package
+     upload
+     publish
+EOS
+
+}
+
+help()
+{
+  usage
 }
 
 all()
